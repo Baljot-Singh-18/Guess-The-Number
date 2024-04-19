@@ -160,3 +160,10 @@ losePlayAgainBtn.addEventListener('click', function() {
     clear();
 
 });
+
+guess.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    check.click();
+  }
+});
