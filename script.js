@@ -27,7 +27,6 @@ let totalLoses = 0;
 let value;
 let num;
 
-
 nextBtn.addEventListener('click', function() {
 
     instructions.style.display = 'none';
