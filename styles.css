@@ -78,7 +78,6 @@ a {
 #instructionsList li:not(:nth-child(1)) {
     text-align: left;
     margin-top: 25px;
-    /* line-height: 35px; */
     font-size: clamp(10px, 2vw, 20px);
 }
 
