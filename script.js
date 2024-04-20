@@ -28,14 +28,11 @@ let value;
 let num;
 
 nextBtn.addEventListener('click', function() {
-
     instructions.style.display = 'none';
     difficulty.style.display = 'block';
-
 });
 
 document.querySelector('#options').addEventListener('click', function(e) {
-
     if (e.target.getAttribute('id') === 'easyBtn') {
         value = 100;
         num = Math.floor(Math.random() * value);
@@ -51,15 +48,12 @@ document.querySelector('#options').addEventListener('click', function(e) {
     };
 
     document.getElementById('range').innerText = 'The number lies between 0 to ' + `${value}`;
-    
     difficulty.style.display = 'none';
     game.style.display = 'block';
-
 });
 
 const clear = () => {
     for (let i = 0; i < 11; i++) {
-
         higher.lastElementChild.remove();
         lower.lastElementChild.remove();
         let higherLi = document.createElement('li');
@@ -69,14 +63,14 @@ const clear = () => {
         higher.insertBefore(higherLi, higher.firstChild);
         lower.insertBefore(lowerLi, lower.firstChild);
         chances = 9;
-
+        document.querySelector("#chances").innerText = `You have ${chances + 1} chances left.`;
     };
 };
 
 check.addEventListener('click', function() {
-
-    if (`${guess.value}` == num) {
-
+    if (`${guess.value}` == '') {
+        pass;
+    } else if (`${guess.value}` == num) {
         totalWins++;
         wins.innerText = totalWins;
         correctGuess.innerText = `${guess.value}` + ' is the correct guess!';
@@ -84,13 +78,10 @@ check.addEventListener('click', function() {
         game.style.display = 'none';
         win.style.display = 'block';
         guess.value = '';
-
     } else {
-
         chances--;
-
+        document.querySelector("#chances").innerText = `You have ${chances + 1} chances left.`;
         if (chances < 0) {
-
             guess.value = '';
             totalLoses++;
             loses.innerText = totalLoses;
@@ -99,9 +90,7 @@ check.addEventListener('click', function() {
             game.style.display = 'none';
             lose.style.display = 'block';
             clear();
-
         } else if (`${guess.value}` < num) {
-
             higher.lastElementChild.remove();
             lower.lastElementChild.remove();
             let higherLi = document.createElement('li');
@@ -111,9 +100,7 @@ check.addEventListener('click', function() {
             higher.insertBefore(higherLi, higher.firstChild);
             lower.insertBefore(lowerLi, lower.firstChild);
             guess.value = '';
-
         } else {
-
             lower.lastElementChild.remove();
             higher.lastElementChild.remove();
             let lowerLi = document.createElement('li');
@@ -123,46 +110,37 @@ check.addEventListener('click', function() {
             higher.insertBefore(higherLi, higher.firstChild);
             lower.insertBefore(lowerLi, lower.firstChild);
             guess.value = '';
-        
         };
     };
 });
 
 winHomeBtn.addEventListener('click', function() {
-
     win.style.display = 'none';
     instructions.style.display = 'block';
     clear();
-
 });
 
 loseHomeBtn.addEventListener('click', function() {
-
     lose.style.display = 'none';
     instructions.style.display = 'block';
     clear();
-
 });
 
 winPlayAgainBtn.addEventListener('click', function() {
-
     win.style.display = 'none';
     difficulty.style.display = 'block';
     clear();
-
 });
 
 losePlayAgainBtn.addEventListener('click', function() {
-
     lose.style.display = 'none';
     difficulty.style.display = 'block';
     clear();
-
 });
 
 guess.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    check.click();
-  }
+    if (event.key === "Enter") {
+        event.preventDefault();
+        check.click();
+    };
 });
